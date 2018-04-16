@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="com.polaris.inventory.domain.BusinessTransaction">
+        <table name="business_transaction" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="transactionDate">
+                <column name="transactionDate"/>
+            </basic>
+            <basic name="username">
+                <column name="username"/>
+            </basic>
+            <basic name="transactionTime">
+                <column name="transactionTime"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Privilege">
+        <table name="privilege" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="name">
+                <column name="NAME"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Product">
+        <table name="product" schema="polariserp" catalog=""/>
+        <id-class class="com.polaris.inventory.domain.ProductPK"/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <id name="productType">
+                <column name="PRODUCT_TYPE"/>
+            </id>
+            <id name="supplierId">
+                <column name="SUPPLIER_ID"/>
+            </id>
+            <basic name="code">
+                <column name="CODE"/>
+            </basic>
+            <basic name="name">
+                <column name="NAME"/>
+            </basic>
+            <basic name="description">
+                <column name="DESCRIPTION"/>
+            </basic>
+            <basic name="unitprice">
+                <column name="UNITPRICE"/>
+            </basic>
+            <basic name="reorderLevel">
+                <column name="REORDER_LEVEL"/>
+            </basic>
+            <basic name="reorderQuantity">
+                <column name="REORDER_QUANTITY"/>
+            </basic>
+            <basic name="status">
+                <column name="STATUS"/>
+            </basic>
+            <basic name="barcode">
+                <column name="barcode"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.ProductCategory">
+        <table name="product_category" schema="polariserp" catalog=""/>
+        <id-class class="com.polaris.inventory.domain.ProductCategoryPK"/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <id name="parentId">
+                <column name="PARENT_ID"/>
+            </id>
+            <basic name="code">
+                <column name="CODE"/>
+            </basic>
+            <basic name="name">
+                <column name="NAME"/>
+            </basic>
+            <basic name="description">
+                <column name="DESCRIPTION"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Role">
+        <table name="role" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="rolecode">
+                <column name="ROLECODE"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Specification">
+        <table name="specification" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="name">
+                <column name="NAME"/>
+            </basic>
+            <basic name="value">
+                <column name="VALUE"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Stock">
+        <table name="stock" schema="polariserp" catalog=""/>
+        <id-class class="com.polaris.inventory.domain.StockPK"/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <id name="productId">
+                <column name="PRODUCT_ID"/>
+            </id>
+            <basic name="currentStock">
+                <column name="CURRENT_STOCK"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.StockLocation">
+        <table name="stock_location" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="address">
+                <column name="address"/>
+            </basic>
+            <basic name="operational">
+                <column name="operational"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.Supplier">
+        <table name="supplier" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="companyName">
+                <column name="COMPANY_NAME"/>
+            </basic>
+            <basic name="firstName">
+                <column name="FIRST_NAME"/>
+            </basic>
+            <basic name="lastName">
+                <column name="LAST_NAME"/>
+            </basic>
+            <basic name="phone">
+                <column name="PHONE"/>
+            </basic>
+            <basic name="addressLine1">
+                <column name="ADDRESS_LINE1"/>
+            </basic>
+            <basic name="addressLine2">
+                <column name="ADDRESS_LINE2"/>
+            </basic>
+            <basic name="addressLine3">
+                <column name="ADDRESS_LINE3"/>
+            </basic>
+            <basic name="city">
+                <column name="CITY"/>
+            </basic>
+            <basic name="state">
+                <column name="STATE"/>
+            </basic>
+            <basic name="country">
+                <column name="COUNTRY"/>
+            </basic>
+            <basic name="postcode">
+                <column name="POSTCODE"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.User">
+        <table name="user" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+            <basic name="username">
+                <column name="username"/>
+            </basic>
+            <basic name="password">
+                <column name="password"/>
+            </basic>
+            <basic name="firstname">
+                <column name="firstname"/>
+            </basic>
+            <basic name="lastname">
+                <column name="lastname"/>
+            </basic>
+            <basic name="email">
+                <column name="email"/>
+            </basic>
+            <basic name="enabled">
+                <column name="enabled"/>
+            </basic>
+            <basic name="tokenExpired">
+                <column name="tokenExpired"/>
+            </basic>
+        </attributes>
+    </entity>
+    <entity class="com.polaris.inventory.domain.UserRole">
+        <table name="user_role" schema="polariserp" catalog=""/>
+        <attributes>
+            <id name="id">
+                <column name="ID"/>
+            </id>
+        </attributes>
+    </entity>
+</entity-mappings>
