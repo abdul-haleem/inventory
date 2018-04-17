@@ -1,5 +1,7 @@
 package com.polaris.inventory.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -13,9 +15,19 @@ public class StockLocation {
     private String address;
     @Column(name = "OPERATIONAL")
     private String operational;
+    
+    @OneToMany(mappedBy="stockLocation")
+    private List<Stock>stocks ;
 
+    public List<Stock> getStocks() {
+		return stocks;
+	}
 
-    public Long getId() {
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+	public Long getId() {
         return id;
     }
 

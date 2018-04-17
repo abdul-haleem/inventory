@@ -1,5 +1,7 @@
 package com.polaris.inventory.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,8 +18,19 @@ public class Specification {
 
     @Column(name = "VALUE")
     private String value;
+    
+    @ManyToMany(mappedBy="specifications")
+    private List<Product>products;
 
-    public Long getId() {
+    public List<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(List<Product> products) {
+		this.products = products;
+	}
+
+	public Long getId() {
         return id;
     }
 

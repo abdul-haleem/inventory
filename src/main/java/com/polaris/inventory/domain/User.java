@@ -1,5 +1,7 @@
 package com.polaris.inventory.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,9 +25,21 @@ public class User {
     private String enabled;
     @Column(name = "tokenexpired")
     private String tokenExpired;
+    
+    @ManyToMany
+    @JoinTable(name="USER_ROLE", joinColumns = @JoinColumn(name="USER_ID"), inverseJoinColumns = @JoinColumn(name="ROLES_ID"))
+    private List<Role>roles;
 
 
-    public Long getId() {
+    public List<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Long getId() {
         return id;
     }
 

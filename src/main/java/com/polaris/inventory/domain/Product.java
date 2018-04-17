@@ -1,167 +1,188 @@
 package com.polaris.inventory.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "product", schema = "polariserp")
 public class Product {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
+	private Long id;
 
-    @Column(name = "CODE")
-    private String code;
-    @Column(name = "NAME")
-    private String name;
-    @Column(name = "DESCRIPTION")
-    private String description;
-    @Column(name = "UNITPRICE")
-    private Double unitprice;
-    @Column(name = "REORDER_LEVEL")
-    private Integer reorderLevel;
-    @Column(name = "REORDER_QUANTITY")
-    private Integer reorderQuantity;
-    @Column(name = "STATUS")
-    private String status;
-    @Column(name = "PRODUCT_TYPE")
-    private Long productType;
-    @Column(name = "SUPPLIERID")
-    private Long supplierId;
-    @Column(name = "BARCODE")
-    private String barcode;
+	@Column(name = "CODE")
+	private String code;
+	@Column(name = "NAME")
+	private String name;
+	@Column(name = "DESCRIPTION")
+	private String description;
+	@Column(name = "UNITPRICE")
+	private Double unitprice;
+	@Column(name = "REORDER_LEVEL")
+	private Integer reorderLevel;
+	@Column(name = "REORDER_QUANTITY")
+	private Integer reorderQuantity;
+	@Column(name = "STATUS")
+	private String status;
+	@Column(name = "PRODUCT_TYPE")
+	private Long productType;
+	@Column(name = "SUPPLIERID")
+	private Long supplierId;
+	@Column(name = "BARCODE")
+	private String barcode;
 
-    @ManyToOne
-    @JoinColumn(name = "supplierId", foreignKey = @ForeignKey (name = "fk_PRODUCT_SUPPLIER1"))
-    private Supplier supplier;
+	@ManyToOne
+	@JoinColumn(name = "supplierId", foreignKey = @ForeignKey(name = "fk_PRODUCT_SUPPLIER1"))
+	private Supplier supplier;
+	
+	@ManyToOne
+	@JoinColumn(name = "productType", foreignKey = @ForeignKey(name = "fk_PRODUCT_PRODUCT_TYPE"))
+	private ProductCategory productCategory;
 
+	@ManyToMany
+	@JoinTable(name = "PRODUCT_SPECIFICATION", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "SPECIFICATION_ID"))
+	private List<Specification> specifications;
 
-    @ManyToOne
-    @JoinColumn(name = "productType", foreignKey = @ForeignKey (name = "fk_PRODUCT_PRODUCT_TYPE"))
-    private ProductCategory productCategory;
+	public Long getId() {
+		return id;
+	}
 
+	public String getCode() {
+		return code;
+	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getCode() {
-        return code;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public double getUnitprice() {
+		return unitprice;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setUnitprice(double unitprice) {
+		this.unitprice = unitprice;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public Integer getReorderLevel() {
+		return reorderLevel;
+	}
 
-    public double getUnitprice() {
-        return unitprice;
-    }
+	public void setReorderLevel(Integer reorderLevel) {
+		this.reorderLevel = reorderLevel;
+	}
 
-    public void setUnitprice(double unitprice) {
-        this.unitprice = unitprice;
-    }
+	public Integer getReorderQuantity() {
+		return reorderQuantity;
+	}
 
-    public Integer getReorderLevel() {
-        return reorderLevel;
-    }
+	public void setReorderQuantity(Integer reorderQuantity) {
+		this.reorderQuantity = reorderQuantity;
+	}
 
-    public void setReorderLevel(Integer reorderLevel) {
-        this.reorderLevel = reorderLevel;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public Integer getReorderQuantity() {
-        return reorderQuantity;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public void setReorderQuantity(Integer reorderQuantity) {
-        this.reorderQuantity = reorderQuantity;
-    }
+	public Long getProductType() {
+		return productType;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public void setProductType(Long productType) {
+		this.productType = productType;
+	}
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+	public Long getSupplierId() {
+		return supplierId;
+	}
 
-    public Long getProductType() {
-        return productType;
-    }
+	public void setSupplierId(Long supplierId) {
+		this.supplierId = supplierId;
+	}
 
-    public void setProductType(Long productType) {
-        this.productType = productType;
-    }
+	public String getBarcode() {
+		return barcode;
+	}
 
-    public Long getSupplierId() {
-        return supplierId;
-    }
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
+	
+	public List<Specification> getSpecifications() {
+		return specifications;
+	}
 
-    public void setSupplierId(Long supplierId) {
-        this.supplierId = supplierId;
-    }
+	public void setSpecifications(List<Specification> specifications) {
+		this.specifications = specifications;
+	}
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
 
-    public String getBarcode() {
-        return barcode;
-    }
+		Product product = (Product) o;
 
-    public void setBarcode(String barcode) {
-        this.barcode = barcode;
-    }
+		if (id != null ? !id.equals(product.id) : product.id != null)
+			return false;
+		if (code != null ? !code.equals(product.code) : product.code != null)
+			return false;
+		if (name != null ? !name.equals(product.name) : product.name != null)
+			return false;
+		if (description != null ? !description.equals(product.description) : product.description != null)
+			return false;
+		if (unitprice != null ? !unitprice.equals(product.unitprice) : product.unitprice != null)
+			return false;
+		if (reorderLevel != null ? !reorderLevel.equals(product.reorderLevel) : product.reorderLevel != null)
+			return false;
+		if (reorderQuantity != null ? !reorderQuantity.equals(product.reorderQuantity)
+				: product.reorderQuantity != null)
+			return false;
+		if (status != null ? !status.equals(product.status) : product.status != null)
+			return false;
+		if (productType != null ? !productType.equals(product.productType) : product.productType != null)
+			return false;
+		if (supplierId != null ? !supplierId.equals(product.supplierId) : product.supplierId != null)
+			return false;
+		return barcode != null ? barcode.equals(product.barcode) : product.barcode == null;
+	}
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        if (id != null ? !id.equals(product.id) : product.id != null) return false;
-        if (code != null ? !code.equals(product.code) : product.code != null) return false;
-        if (name != null ? !name.equals(product.name) : product.name != null) return false;
-        if (description != null ? !description.equals(product.description) : product.description != null) return false;
-        if (unitprice != null ? !unitprice.equals(product.unitprice) : product.unitprice != null) return false;
-        if (reorderLevel != null ? !reorderLevel.equals(product.reorderLevel) : product.reorderLevel != null)
-            return false;
-        if (reorderQuantity != null ? !reorderQuantity.equals(product.reorderQuantity) : product.reorderQuantity != null)
-            return false;
-        if (status != null ? !status.equals(product.status) : product.status != null) return false;
-        if (productType != null ? !productType.equals(product.productType) : product.productType != null) return false;
-        if (supplierId != null ? !supplierId.equals(product.supplierId) : product.supplierId != null) return false;
-        return barcode != null ? barcode.equals(product.barcode) : product.barcode == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (unitprice != null ? unitprice.hashCode() : 0);
-        result = 31 * result + (reorderLevel != null ? reorderLevel.hashCode() : 0);
-        result = 31 * result + (reorderQuantity != null ? reorderQuantity.hashCode() : 0);
-        result = 31 * result + (status != null ? status.hashCode() : 0);
-        result = 31 * result + (productType != null ? productType.hashCode() : 0);
-        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
-        result = 31 * result + (barcode != null ? barcode.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public int hashCode() {
+		int result = id != null ? id.hashCode() : 0;
+		result = 31 * result + (code != null ? code.hashCode() : 0);
+		result = 31 * result + (name != null ? name.hashCode() : 0);
+		result = 31 * result + (description != null ? description.hashCode() : 0);
+		result = 31 * result + (unitprice != null ? unitprice.hashCode() : 0);
+		result = 31 * result + (reorderLevel != null ? reorderLevel.hashCode() : 0);
+		result = 31 * result + (reorderQuantity != null ? reorderQuantity.hashCode() : 0);
+		result = 31 * result + (status != null ? status.hashCode() : 0);
+		result = 31 * result + (productType != null ? productType.hashCode() : 0);
+		result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
+		result = 31 * result + (barcode != null ? barcode.hashCode() : 0);
+		return result;
+	}
 }

@@ -1,5 +1,7 @@
 package com.polaris.inventory.domain;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,6 +12,9 @@ public class Privilege {
     @Column(name = "ID")
     private Long id;
     private String name;
+    
+    @ManyToMany(mappedBy="privileges")
+    private List<Role>roles;
 
     @Id
     @Column(name = "ID")

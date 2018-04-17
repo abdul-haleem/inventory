@@ -16,9 +16,31 @@ public class Stock {
 
     @Column(name = "PRODUCT_ID")
     private Long productId;
+    
+    @Column(name = "STORE_ID")
+    private Long storeId;
+    
+    @ManyToOne
+    @JoinColumn(name="storeId",  foreignKey = @ForeignKey(name="fk_STOCK_LOCATION"))
+    private StockLocation stockLocation;
 
+    public Long getStoreId() {
+		return storeId;
+	}
 
-    public Long getId() {
+	public void setStoreId(Long storeId) {
+		this.storeId = storeId;
+	}
+
+	public StockLocation getStockLocation() {
+		return stockLocation;
+	}
+
+	public void setStockLocation(StockLocation stockLocation) {
+		this.stockLocation = stockLocation;
+	}
+
+	public Long getId() {
         return id;
     }
 
