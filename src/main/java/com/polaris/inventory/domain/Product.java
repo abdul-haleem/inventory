@@ -33,6 +33,8 @@ public class Product {
 	private Long supplierId;
 	@Column(name = "BARCODE")
 	private String barcode;
+	@Column(name = "STOCK_ID")
+	private Long stockId;
 
 	@ManyToOne
 	@JoinColumn(name = "supplierId", foreignKey = @ForeignKey(name = "fk_PRODUCT_SUPPLIER1"))
@@ -43,8 +45,13 @@ public class Product {
 	private ProductCategory productCategory;
 
 	@ManyToMany
-	@JoinTable(name = "PRODUCT_SPECIFICATION", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "SPECIFICATION_ID"))
+	@JoinTable(name = "PRODUCT_SPECIFICATION", joinColumns = @JoinColumn(name = "PRODUCT_ID"), inverseJoinColumns = @JoinColumn(name = "PRODUCT_SPECIFICATION_ID"))
 	private List<Specification> specifications;
+
+	@OneToOne
+	@JoinColumn(name = "stockId")
+	private Stock stock;
+
 
 	public Long getId() {
 		return id;
@@ -74,11 +81,11 @@ public class Product {
 		this.description = description;
 	}
 
-	public double getUnitprice() {
+	public Double getUnitprice() {
 		return unitprice;
 	}
 
-	public void setUnitprice(double unitprice) {
+	public void setUnitprice(Double unitprice) {
 		this.unitprice = unitprice;
 	}
 
@@ -129,7 +136,23 @@ public class Product {
 	public void setBarcode(String barcode) {
 		this.barcode = barcode;
 	}
-	
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	public ProductCategory getProductCategory() {
+		return productCategory;
+	}
+
+	public void setProductCategory(ProductCategory productCategory) {
+		this.productCategory = productCategory;
+	}
+
 	public List<Specification> getSpecifications() {
 		return specifications;
 	}
@@ -137,52 +160,20 @@ public class Product {
 	public void setSpecifications(List<Specification> specifications) {
 		this.specifications = specifications;
 	}
-	@Override
-	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
 
-		Product product = (Product) o;
-
-		if (id != null ? !id.equals(product.id) : product.id != null)
-			return false;
-		if (code != null ? !code.equals(product.code) : product.code != null)
-			return false;
-		if (name != null ? !name.equals(product.name) : product.name != null)
-			return false;
-		if (description != null ? !description.equals(product.description) : product.description != null)
-			return false;
-		if (unitprice != null ? !unitprice.equals(product.unitprice) : product.unitprice != null)
-			return false;
-		if (reorderLevel != null ? !reorderLevel.equals(product.reorderLevel) : product.reorderLevel != null)
-			return false;
-		if (reorderQuantity != null ? !reorderQuantity.equals(product.reorderQuantity)
-				: product.reorderQuantity != null)
-			return false;
-		if (status != null ? !status.equals(product.status) : product.status != null)
-			return false;
-		if (productType != null ? !productType.equals(product.productType) : product.productType != null)
-			return false;
-		if (supplierId != null ? !supplierId.equals(product.supplierId) : product.supplierId != null)
-			return false;
-		return barcode != null ? barcode.equals(product.barcode) : product.barcode == null;
+	public Long getStockId() {
+		return stockId;
 	}
 
-	@Override
-	public int hashCode() {
-		int result = id != null ? id.hashCode() : 0;
-		result = 31 * result + (code != null ? code.hashCode() : 0);
-		result = 31 * result + (name != null ? name.hashCode() : 0);
-		result = 31 * result + (description != null ? description.hashCode() : 0);
-		result = 31 * result + (unitprice != null ? unitprice.hashCode() : 0);
-		result = 31 * result + (reorderLevel != null ? reorderLevel.hashCode() : 0);
-		result = 31 * result + (reorderQuantity != null ? reorderQuantity.hashCode() : 0);
-		result = 31 * result + (status != null ? status.hashCode() : 0);
-		result = 31 * result + (productType != null ? productType.hashCode() : 0);
-		result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
-		result = 31 * result + (barcode != null ? barcode.hashCode() : 0);
-		return result;
+	public void setStockId(Long stockId) {
+		this.stockId = stockId;
+	}
+
+	public Stock getStock() {
+		return stock;
+	}
+
+	public void setStock(Stock stock) {
+		this.stock = stock;
 	}
 }

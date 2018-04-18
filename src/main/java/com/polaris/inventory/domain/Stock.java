@@ -14,9 +14,6 @@ public class Stock {
     @Column(name = "CURRENT_STOCK")
     private Long currentStock;
 
-    @Column(name = "PRODUCT_ID")
-    private Long productId;
-    
     @Column(name = "STORE_ID")
     private Long storeId;
     
@@ -24,21 +21,8 @@ public class Stock {
     @JoinColumn(name="storeId",  foreignKey = @ForeignKey(name="fk_STOCK_LOCATION"))
     private StockLocation stockLocation;
 
-    public Long getStoreId() {
-		return storeId;
-	}
-
-	public void setStoreId(Long storeId) {
-		this.storeId = storeId;
-	}
-
-	public StockLocation getStockLocation() {
-		return stockLocation;
-	}
-
-	public void setStockLocation(StockLocation stockLocation) {
-		this.stockLocation = stockLocation;
-	}
+    @OneToOne( mappedBy = "stock")
+    private Product product;
 
 	public Long getId() {
         return id;
@@ -52,34 +36,27 @@ public class Stock {
         this.currentStock = currentStock;
     }
 
-
-    public Long getProductId() {
-        return productId;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setProductId(Long productId) {
-        this.productId = productId;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Stock stock = (Stock) o;
-
-        if (id != stock.id) return false;
-        if (productId != stock.productId) return false;
-        if (currentStock != null ? !currentStock.equals(stock.currentStock) : stock.currentStock != null) return false;
-
-        return true;
+    public StockLocation getStockLocation() {
+        return stockLocation;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (currentStock != null ? currentStock.hashCode() : 0);
-        result = 31 * result + (int) (productId ^ (productId >>> 32));
-        return result;
+    public void setStockLocation(StockLocation stockLocation) {
+        this.stockLocation = stockLocation;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
     }
 }

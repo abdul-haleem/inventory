@@ -27,17 +27,8 @@ public class User {
     private String tokenExpired;
     
     @ManyToMany
-    @JoinTable(name="USER_ROLE", joinColumns = @JoinColumn(name="USER_ID"), inverseJoinColumns = @JoinColumn(name="ROLES_ID"))
-    private List<Role>roles;
-
-
-    public List<Role> getRoles() {
-		return roles;
-	}
-
-	public void setRoles(List<Role> roles) {
-		this.roles = roles;
-	}
+    @JoinTable(name="USER_ROLE", joinColumns = @JoinColumn(name="USER_ID"), inverseJoinColumns = @JoinColumn(name="ROLE_ID"))
+    private List<Role> roles;
 
 	public Long getId() {
         return id;
@@ -99,35 +90,11 @@ public class User {
         this.tokenExpired = tokenExpired;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        User user = (User) o;
-
-        if (id != user.id) return false;
-        if (username != null ? !username.equals(user.username) : user.username != null) return false;
-        if (password != null ? !password.equals(user.password) : user.password != null) return false;
-        if (firstname != null ? !firstname.equals(user.firstname) : user.firstname != null) return false;
-        if (lastname != null ? !lastname.equals(user.lastname) : user.lastname != null) return false;
-        if (email != null ? !email.equals(user.email) : user.email != null) return false;
-        if (enabled != null ? !enabled.equals(user.enabled) : user.enabled != null) return false;
-        if (tokenExpired != null ? !tokenExpired.equals(user.tokenExpired) : user.tokenExpired != null) return false;
-
-        return true;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
-        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (enabled != null ? enabled.hashCode() : 0);
-        result = 31 * result + (tokenExpired != null ? tokenExpired.hashCode() : 0);
-        return result;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

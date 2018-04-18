@@ -11,19 +11,16 @@ public class Privilege {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
+
+    @Column(name = "NAME")
     private String name;
     
     @ManyToMany(mappedBy="privileges")
     private List<Role>roles;
 
-    @Id
-    @Column(name = "ID")
+
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -34,23 +31,11 @@ public class Privilege {
         this.name = name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Privilege privilege = (Privilege) o;
-
-        if (id != privilege.id) return false;
-        if (name != null ? !name.equals(privilege.name) : privilege.name != null) return false;
-
-        return true;
+    public List<Role> getRoles() {
+        return roles;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
     }
 }

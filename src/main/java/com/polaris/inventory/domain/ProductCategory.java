@@ -1,6 +1,7 @@
 package com.polaris.inventory.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "product_category", schema = "polariserp")
@@ -23,11 +24,17 @@ public class ProductCategory {
     @Column(name = "PARENTID")
     private Long parentId;
 
+    @ManyToOne
+    @JoinColumn(name = "parentId")
+    private ProductCategory parent;
+
+    @OneToMany(mappedBy = "parent")
+    private List<ProductCategory> subCategories;
+
 
     public Long getId() {
         return id;
     }
-
 
     public String getCode() {
         return code;
@@ -36,7 +43,6 @@ public class ProductCategory {
     public void setCode(String code) {
         this.code = code;
     }
-
 
     public String getName() {
         return name;
@@ -62,29 +68,19 @@ public class ProductCategory {
         this.parentId = parentId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        ProductCategory that = (ProductCategory) o;
-
-        if (id != that.id) return false;
-        if (parentId != that.parentId) return false;
-        if (code != null ? !code.equals(that.code) : that.code != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (description != null ? !description.equals(that.description) : that.description != null) return false;
-
-        return true;
+    public ProductCategory getParent() {
+        return parent;
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (int) (parentId ^ (parentId >>> 32));
-        return result;
+    public void setParent(ProductCategory parent) {
+        this.parent = parent;
+    }
+
+    public List<ProductCategory> getSubCategories() {
+        return subCategories;
+    }
+
+    public void setSubCategories(List<ProductCategory> subCategories) {
+        this.subCategories = subCategories;
     }
 }
