@@ -2,10 +2,9 @@ package com.polaris.inventory.service.request;
 
 import java.io.Serializable;
 
-public class ServiceRequest<T> implements Serializable{
+public abstract class ServiceRequest implements Serializable{
 
     private String username;
-    private T entity;
 
     public String getUsername() {
         return username;
@@ -15,17 +14,6 @@ public class ServiceRequest<T> implements Serializable{
         this.username = username;
     }
 
-    public T getEntity() {
-        return entity;
-    }
 
-    public void setEntity(T entity) {
-        this.entity = entity;
-    }
-
-    public ServiceRequest(String username, T entity) {
-        this.username = username;
-        this.entity = entity;
-    }
 }
 
