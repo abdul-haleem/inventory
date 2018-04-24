@@ -1,4 +1,4 @@
-package com.polaris.inventory.web.request;
+package com.polaris.inventory.service.request;
 
 public class NewProductCategory {
  	

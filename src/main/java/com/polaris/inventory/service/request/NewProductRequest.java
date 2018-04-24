@@ -1,7 +1,12 @@
-package com.polaris.inventory.web.request;
+package com.polaris.inventory.service.request;
 
-public class NewProductRequest {
+public class NewProductRequest extends ServiceRequest {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7496827209751245719L;
+	
 	private String name;
 	private String description;
 	private Double unitprice;
@@ -9,7 +14,14 @@ public class NewProductRequest {
 	private Integer reorderQuantity;
 	private String status;
 	private Long productType;
+	private String barcode;
 	
+	public String getBarcode() {
+		return barcode;
+	}
+	public void setBarcode(String barcode) {
+		this.barcode = barcode;
+	}
 	public String getName() {
 		return name;
 	}
