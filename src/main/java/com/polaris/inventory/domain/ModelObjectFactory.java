@@ -4,7 +4,10 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.polaris.inventory.service.request.NewProductCategory;
+import com.polaris.inventory.service.request.NewProductCategoryRequest;
 import com.polaris.inventory.service.request.NewProductRequest;
+import com.polaris.inventory.service.request.NewStockRequest;
+import com.polaris.inventory.service.request.NewSupplierRequest;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 
@@ -38,5 +41,42 @@ public class ModelObjectFactory {
 		return productCategory;
 	}
 	
+	public Supplier newSupplier(NewSupplierRequest supplierRequest) 
+	{
+		Supplier supplier = new Supplier();
+		supplier.setCompanyName(supplierRequest.getCompanyName());
+		supplier.setFirstName(supplierRequest.getFirstName());
+		supplier.setLastName(supplierRequest.getLastName());
+		supplier.setPhone(supplierRequest.getPhone());
+		supplier.setAddressLine1(supplierRequest.getAddressLine1());
+		supplier.setAddressLine2(supplierRequest.getAddressLine2());
+		supplier.setAddressLine3(supplierRequest.getAddressLine3());
+		supplier.setCity(supplierRequest.getCity());
+		supplier.setCountry(supplierRequest.getCountry());
+		supplier.setPostcode(supplierRequest.getPostcode());
+		
+		return supplier;
+	}
+	
+	public Stock newStock(Product product, StockLocation stockLocation, NewStockRequest stockRequest ) 
+	{
+	
+		Stock stock = new Stock();
+		
+		stock.setCurrentStock(stockRequest.getCurrentStock());
+		stock.setStockLocation(stockLocation);
+		stock.setProduct(product);
+		
+		return stock;
+	}
+	public ProductCategory newProductCategory(NewProductCategoryRequest productCategoryRequest)
+	{
+		ProductCategory productCategory = new ProductCategory();
+		productCategory.setCode(productCategoryRequest.getCode());
+		productCategory.setName(productCategoryRequest.getName());
+		productCategory.setDescription(productCategoryRequest.getDescription());
+		
+		return productCategory;
+	}
 
 }

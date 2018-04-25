@@ -29,7 +29,7 @@ public class ProductService extends ServiceBase{
 		Product pd = modelObjectFactory.newProduct(productRequest);
 		pd = productRepository.save(pd);
 		ProductResponse productResponse = new ProductResponse();
-		productResponse.assemble(pd);
+		productResponse = productResponse.assemble(pd);
 		response.setData(productResponse);
 		return response;
 		
@@ -48,12 +48,10 @@ public class ProductService extends ServiceBase{
 		response.setData(products);
 		return response;
 	}
-	public ServiceResponse<?> getProductByCode(NewProductRequest productRequest)
+	public ServiceResponse<?> getProductByBarCode(NewProductRequest productRequest)
 	{
-	
 		Product pd = new Product();
 		pd.setBarcode(productRequest.getBarcode());
-		
 		Example<Product> criteria = Example.of(pd);
 		Optional<Product> product = productRepository.findOne(criteria);
 		response.setData(product);

@@ -8,4 +8,6 @@ import com.polaris.inventory.domain.StockLocation;
 @Repository
 public interface StockLocationRepository extends JpaRepository<StockLocation, Long> {
 
+	public StockLocation findByStoreId(Long storeId);
 }
+

@@ -7,5 +7,7 @@ import com.polaris.inventory.domain.Stock;
 
 @Repository
 public interface StockRepository extends JpaRepository<Stock, Long>{
+	
+	public Stock findByProductCode(String Productcode);
 
 }

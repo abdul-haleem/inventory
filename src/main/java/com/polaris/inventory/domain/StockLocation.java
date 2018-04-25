@@ -20,30 +20,36 @@ public class StockLocation {
     private List<Stock>stocks ;
 
 	public Long getId() {
-        return id;
-    }
+		return id;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public String getOperational() {
-        return operational;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public void setOperational(String operational) {
-        this.operational = operational;
-    }
+	public String getOperational() {
+		return operational;
+	}
 
-    public List<Stock> getStocks() {
-        return stocks;
-    }
+	public void setOperational(String operational) {
+		this.operational = operational;
+	}
 
-    public void setStocks(List<Stock> stocks) {
-        this.stocks = stocks;
-    }
+	public List<Stock> getStocks() {
+		return stocks;
+	}
+
+	public void setStocks(List<Stock> stocks) {
+		this.stocks = stocks;
+	}
+
+
 }

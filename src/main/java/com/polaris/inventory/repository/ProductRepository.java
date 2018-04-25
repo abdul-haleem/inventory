@@ -8,4 +8,5 @@ import com.polaris.inventory.domain.Product;
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long>{
 
+	public Product findById(String Productcode);
 }
