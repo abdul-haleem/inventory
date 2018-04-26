@@ -8,6 +8,7 @@ import com.polaris.inventory.service.request.NewProductCategoryRequest;
 import com.polaris.inventory.service.request.NewProductRequest;
 import com.polaris.inventory.service.request.NewStockRequest;
 import com.polaris.inventory.service.request.NewSupplierRequest;
+import com.polaris.inventory.service.request.NewUserRequest;
 
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 
@@ -77,6 +78,19 @@ public class ModelObjectFactory {
 		productCategory.setDescription(productCategoryRequest.getDescription());
 		
 		return productCategory;
+	}
+	
+	public User newUser(NewUserRequest userRequest)
+	{
+		User user = new User();
+		user.setUsername(userRequest.getUsername());
+		user.setFirstname(userRequest.getUsername());
+		user.setLastname(userRequest.getUsername());
+		user.setPassword(userRequest.getPassword());
+		user.setEmail(userRequest.getEmail());
+		user.setEnabled(userRequest.getEnabled());
+		
+		return user;
 	}
 
 }

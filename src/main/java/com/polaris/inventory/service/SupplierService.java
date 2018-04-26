@@ -48,8 +48,8 @@ public class SupplierService extends ServiceBase {
 		supplier.setFirstName(supplierRequest.getFirstName());
 		supplier.setPhone(supplierRequest.getPhone());
 		Example<Supplier> criteria = Example.of(supplier);
-		Optional<Supplier> product = supplierRepository.findOne(criteria);
-		response.setData(product);
+		Optional<Supplier> sup = supplierRepository.findOne(criteria);
+		response.setData(sup);
 		return response;
 		
 	}
